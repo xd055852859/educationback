@@ -32,6 +32,12 @@ const routes: Array<RouteRecordRaw> = [
         children: [],
       },
       {
+        path: "tag",
+        name: "tag",
+        component: () => import("@/views/pages/tag.vue"),
+        children: [],
+      },
+      {
         path: "creator",
         name: "creator",
         component: () => import("@/views/pages/creator.vue"),

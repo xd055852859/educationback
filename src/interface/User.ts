@@ -14,6 +14,7 @@ export interface User extends Person {
   role?: string;
   totalSpace?: number;
   usedSpace?: number;
+  adminRole: number;
 }
 export interface Member extends Person {
   role: number;

@@ -16,7 +16,7 @@ onMounted(() => {
   <div class="login">
     <div class="login-box">
       <div class="login-logo">
-        <img src="/common/logoTitle.svg" alt="" />
+        <img src="/login/logoTitle.svg" alt="" />
       </div>
       <div class="login-container">
         <Login v-if="loginState === 'login'" /> <Reset v-else />
@@ -29,7 +29,7 @@ onMounted(() => {
 .login {
   width: 100vw;
   height: 100vh;
-  background: #ffffff;
+ 
   @include flex(center, center, null);
   .login-box {
     width: 400px;

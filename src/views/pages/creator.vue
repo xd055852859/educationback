@@ -13,6 +13,8 @@ const searchList = ref<any>([]);
 const searchName = ref<string>("");
 const creatorType = ref<number>(0);
 const creatorState = ref<number>(0);
+const chooseIndex = ref<number>(-1);
+const chooseKey = ref<string>("");
 const creatorArray = ["全部", "通过", "禁用"];
 const buttonRef = ref();
 onMounted(() => {
@@ -125,21 +127,16 @@ watchEffect(() => {
         <el-table-column prop="resourceNum" label="发布课件" align="center" />
         <el-table-column fixed="right" label="操作" width="180" align="center">
           <template #default="scope">
-            <el-button
-              type="primary"
-              link
-              size="small"
-              ref="buttonRef"
-              @click="creatorState = scope.row.status"
-              >{{ scope.row.status === 1 ? "通过" : "禁用" }}</el-button
-            >
-            <el-popover
-              ref="popoverRef"
-              :virtual-ref="buttonRef"
-              trigger="click"
-              title="创建者审核"
-              virtual-triggering
-            >
+            <el-popover trigger="click" title="创建者审核">
+              <template #reference>
+                <el-button
+                  type="primary"
+                  link
+                  ref="buttonRef"
+                  @click="creatorState = scope.row.status"
+                  >{{ scope.row.status === 1 ? "禁用" : "通过" }}</el-button
+                >
+              </template>
               <el-radio-group
                 v-model="creatorState"
                 @change="

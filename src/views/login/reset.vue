@@ -143,7 +143,7 @@ const changeState = async () => {
       已有账号？<span>直接登录</span>
     </div>
     <!-- <div class="login-prompt" @click="setLoginState('register')" v-else>
-      没有飞梭账户？<span>立即注册</span>
+      没有场景英语账户？<span>立即注册</span>
     </div> -->
   </div>
 </template>

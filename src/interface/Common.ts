@@ -28,3 +28,35 @@ export interface Notice {
   applyKey?: string;
   newRole?: number;
 }
+export enum ROLELIST {
+  "SpaceSuperAdmin" = -2,
+  "SpaceAdmin" = -1,
+  //箭头类型
+  "SuperAdmin" = 0,
+  "Admin" = 1,
+  "Editor" = 2,
+  "author" = 3,
+  "Member" = 4,
+}
+export const ROLE_OPTIONS = [
+  // {
+  //   label: "超管",
+  //   value: ROLELIST.SuperAdmin,
+  // },
+  {
+    label: "管理员",
+    value: ROLELIST.Admin,
+  },
+  {
+    label: "编辑",
+    value: ROLELIST.Editor,
+  },
+  {
+    label: "作者",
+    value: ROLELIST.author,
+  },
+  {
+    label: "只读",
+    value: ROLELIST.Member,
+  },
+];

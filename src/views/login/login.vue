@@ -74,7 +74,7 @@ const login = async () => {
       <div @click="setLoginState('reset')">找回密码</div>
     </div>
     <!-- <div class="login-prompt" @click="setLoginState('register')">
-      没有飞梭账户？<span>立即注册</span>
+      没有场景英语账户？<span>立即注册</span>
     </div> -->
   </div>
 </template>

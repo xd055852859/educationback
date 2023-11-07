@@ -8,7 +8,6 @@ const props = defineProps<{
     <div className="header-title">
       {{ title }}
     </div>
-
     <div className="header-button"><slot name="button"></slot></div>
   </div>
 </template>

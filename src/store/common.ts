@@ -35,6 +35,7 @@ export const commonStore = defineStore("commonStore", () => {
     } else if (1200 <= width) {
       deviceSize.value = "xl";
     }
+
   };
   const setChoose = (newKey, newType) => {
     chooseKey.value = newKey;

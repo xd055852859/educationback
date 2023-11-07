@@ -1,74 +1,60 @@
 <script setup lang="ts">
 import Header from "@/components/header.vue";
-const enList = ref<any>([]);
-const cnList = ref<any>([]);
+import { ResultProps } from "@/interface/Common";
+import api from "@/services/api";
+const resourceList = ref<any>([]);
+const totalLesson = ref<number>(0);
+const userNum = ref<number>(0);
+onMounted(() => {
+  getData();
+});
+const getData = async () => {
+  const dataRes = (await api.request.get("resource/summary")) as ResultProps;
+  if (dataRes.msg === "OK") {
+    totalLesson.value = dataRes.data.totalLesson;
+    userNum.value = dataRes.data.userNum;
+    resourceList.value = dataRes.data.resourceList;
+  }
+};
 </script>
 <template>
   <Header title="概览" />
   <div class="overview box">
     <div class="overview-header">
       <el-row :gutter="25">
-        <el-col :span="6">
+        <el-col :span="12">
           <el-card shadow="hover">
-            <div class="header-title">课程数量(语文)</div>
+            <div class="header-title">课程数量</div>
+            <div class="header-content">{{ totalLesson }}</div>
+          </el-card>
+        </el-col>
 
-            <div class="header-content">9999</div>
-          </el-card>
-        </el-col>
-        <el-col :span="6">
+        <el-col :span="12">
           <el-card shadow="hover">
-            <div class="header-title">课程数量(英语)</div>
-            <div class="header-content">333</div>
+            <div class="header-title">订阅次数</div>
+            <div class="header-content">{{ userNum }}</div>
           </el-card>
-        </el-col>
-        <el-col :span="6">
-          <el-card shadow="hover">
-            <div class="header-title">课程数量(语文)</div>
-
-            <div class="header-content">9999</div>
-          </el-card>
-        </el-col>
-        <el-col :span="6">
-          <el-card shadow="hover">
-            <div class="header-title">课程数量(英语)</div>
-            <div class="header-content">333</div></el-card
-          >
         </el-col>
       </el-row>
     </div>
     <div class="overview-content">
       <el-row :gutter="25">
-        <el-col :span="12">
+        <el-col :span="24">
           <el-card shadow="hover">
-            <el-table :data="enList" fit style="height: calc(100vh - 300px)">
-              <el-table-column type="index" width="50" />
+            <el-table
+              :data="resourceList"
+              fit
+              style="height: calc(100vh - 300px)"
+              stripe
+            >
               <el-table-column
-                prop="name"
-                label="课程榜单(语文)"
+                label="序号"
+                type="index"
+                width="100"
                 align="center"
               />
-              <el-table-column
-                prop="name"
-                label="累计学习次数"
-                align="center"
-              />
-            </el-table>
-          </el-card>
-        </el-col>
-        <el-col :span="12">
-          <el-card shadow="hover">
-            <el-table :data="cnList" fit style="height: calc(100vh - 300px)">
-              <el-table-column type="index" width="50" />
-              <el-table-column
-                prop="name"
-                label="课程榜单(英语)"
-                align="center"
-              />
-              <el-table-column
-                prop="name"
-                label="累计学习次数"
-                align="center"
-              />
+              <el-table-column prop="name" label="课程榜单" align="center" />
+              <el-table-column prop="agentNum" label="订阅数" align="center" />
             </el-table>
           </el-card>
         </el-col>

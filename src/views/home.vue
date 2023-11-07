@@ -22,9 +22,9 @@ const logout = () => {
   <div class="home">
     <div class="home-left">
       <div class="home-title">
-        <!-- <img :src="logoSvg" alt="" class="home-logo" /> -->
+        <img src="/common/logo.svg" alt="" class="home-logo" />
         <div style="text-align: center">
-          飞梭运营后台
+          场景英语运营后台
         </div>
       </div>
       <el-menu
@@ -46,6 +46,10 @@ const logout = () => {
         <el-menu-item index="/home/lesson">
           <el-icon :size="35"><Picture /></el-icon>
           <div class="menu-title">课件</div>
+        </el-menu-item>
+        <el-menu-item index="/home/tag">
+          <el-icon :size="35"><Notebook /></el-icon>
+          <div class="menu-title">标签</div>
         </el-menu-item>
         <el-menu-item index="/home/creator">
           <el-icon :size="35"><Notebook /></el-icon>
@@ -90,8 +94,8 @@ const logout = () => {
       font-size: 16px;
       @include flex(center, center, wrap);
       .home-logo {
-        width: 100px;
-        height: 100px;
+        width: 30px;
+        height: 30px;
         margin-bottom: 10px;
         margin-top: 10px;
       }

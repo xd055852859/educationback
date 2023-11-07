@@ -3,7 +3,7 @@ import axios from "axios";
 import { ElMessage } from "element-plus";
 const AUTH_URL = import.meta.env.VITE_AUTH_URL;
 const API_URL = import.meta.env.VITE_API_URL;
-let token = localStorage.getItem("token") || "";
+let token = localStorage.getItem("auth_token") || "";
 
 axios.interceptors.response.use(
   (response) => {

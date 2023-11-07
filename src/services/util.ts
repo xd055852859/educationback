@@ -202,17 +202,31 @@ export const downloadFile = (url, fileName) => {
       URL.revokeObjectURL(href);
     });
 };
+//获取视频时长
+export const getFileDuration = (file) => {
+  let reader = new FileReader();
+  reader.onload = function () {
+    getUrlDuration(reader.result);
+  };
+  reader.readAsDataURL(file);
+};
+export const getUrlDuration = (url) => {
+  let video: any = document.createElement("video");
+  video.src = url;
+  video.addEventListener("loadedmetadata", function () {
+    var duration = video.duration;
+    console.log(duration);
+  });
+};
 //转换树
 export const formatData = (nodes: any, nodeId: string) => {
   let obj: any = {
     ...nodes[nodeId],
-    key: nodeId,
-    label: nodes[nodeId].name,
     children: [],
   };
 
-  if (nodes[nodeId].sortList.length > 0) {
-    nodes[nodeId].sortList.forEach((item: any) => {
+  if (nodes[nodeId].children && nodes[nodeId].children.length > 0) {
+    nodes[nodeId].children.forEach((item: any) => {
       let nodeItem = formatData(nodes, item);
       obj.children.push(nodeItem);
     });
@@ -246,4 +260,26 @@ export const checkPassword = (rule: any, value: any, callback: any) => {
   } else {
     callback();
   }
+};
+export const detectZoom = () => {
+  var ratio = 0,
+    screen: any = window.screen,
+    ua = navigator.userAgent.toLowerCase();
+
+  if (window.devicePixelRatio !== undefined) {
+    ratio = window.devicePixelRatio;
+  } else if (~ua.indexOf("msie")) {
+    if (screen?.deviceXDPI && screen?.logicalXDPI) {
+      ratio = screen.deviceXDPI / screen.logicalXDPI;
+    }
+  } else if (
+    window.outerWidth !== undefined &&
+    window.innerWidth !== undefined
+  ) {
+    ratio = window.outerWidth / window.innerWidth;
+  }
+  if (ratio) {
+    ratio = Math.round(ratio * 100) / 100;
+  }
+  return ratio;
 };

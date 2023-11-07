@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getSearchParamValue } from "@/services/util";
+import { detectZoom, getSearchParamValue } from "@/services/util";
 import request from "@/services/api";
 import { storeToRefs } from "pinia";
 import router from "@/router";
@@ -15,6 +15,7 @@ onMounted(() => {
     let token = localStorage.getItem("auth_token") as string;
     setToken(token);
     api.setToken(token);
+    console.log(detectZoom());
     // navigate("/home");
   } else {
     router.push("/");
