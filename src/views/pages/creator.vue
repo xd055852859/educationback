@@ -74,7 +74,7 @@ watchEffect(() => {
 });
 </script>
 <template>
-  <Header title="创作者" />
+  <Header title="创作者管理" />
   <div class="box">
     <div class="box-header">
       <div>

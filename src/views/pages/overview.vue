@@ -46,6 +46,7 @@ const getData = async () => {
               fit
               style="height: calc(100vh - 300px)"
               stripe
+              border
             >
               <el-table-column
                 label="序号"

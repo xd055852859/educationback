@@ -98,7 +98,7 @@ const chooseTagText = (data) => {
       <el-tree
         :data="tagList"
         :accordion="true"
-        :indent="15"
+        :indent="45"
         node-key="_key"
         :default-expand-all="true"
         :expand-on-click-node="false"

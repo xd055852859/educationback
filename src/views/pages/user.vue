@@ -36,21 +36,25 @@ const getSonData = async (key) => {
     sonMemberList.value = dataRes.data;
   }
 };
-// const deleteMember = (index) => {
-//   ElMessageBox.confirm("是否删除该用户", "删除用户", {
-//     confirmButtonText: "确认",
-//     cancelButtonText: "取消",
-//   }).then(async () => {
-//     const memberRes = (await api.request.delete("developMember", {
-//       developerKey: spaceKey.value,
-//       memberKeyArr: [memberList.value[index].userKey],
-//     })) as ResultProps;
-//     if (memberRes.msg === "OK") {
-//       ElMessage.success("删除用户成功");
-//       memberList.value.splice(index, 1);
-//     }
-//   });
-// };
+const deleteMember = (index, userKey, status) => {
+  ElMessageBox.confirm(
+    `是否${status === 1 ? "解禁" : "禁用"}该用户`,
+    `${status === 1 ? "解禁" : "禁用"}用户`,
+    {
+      confirmButtonText: "确认",
+      cancelButtonText: "取消",
+    }
+  ).then(async () => {
+    const memberRes = (await api.request.patch("user/forbidden", {
+      userKey: userKey,
+      status: status,
+    })) as ResultProps;
+    if (memberRes.msg === "OK") {
+      ElMessage.success(`${status === 1 ? "解禁" : "禁用"}用户成功`);
+      memberList.value[index].status = status;
+    }
+  });
+};
 
 // const addMember = async (index: number, userKey: string) => {
 //   const memberRes = (await api.request.post("/developMember", {
@@ -172,8 +176,18 @@ watchEffect(() => {
         </el-table-column>
         <el-table-column fixed="right" label="操作" width="180" align="center">
           <template #default="scope">
-            <el-button link type="primary" size="small" @click=""
-              >禁用</el-button
+            <el-button
+              link
+              :type="scope.row.status === 2 ? 'danger' : 'primary'"
+              size="small"
+              @click="
+                deleteMember(
+                  scope.$index,
+                  scope.row._key,
+                  scope.row.status === 1 ? 2 : 1
+                )
+              "
+              >{{ scope.row.status === 1 ? "禁用" : "解禁" }}</el-button
             >
           </template>
         </el-table-column>

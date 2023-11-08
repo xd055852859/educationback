@@ -122,7 +122,7 @@ watchEffect(() => {
         <el-table-column prop="name" label="课程名称" align="center" />
         <el-table-column label="创作者" align="center">
           <template #default="scope">
-            <div class="dp--center">
+            <div class="dp-center-center">
               <Avatar
                 :src="scope.row.developerInfo.logo"
                 :alt="scope.row.developerInfo.name"

@@ -28,7 +28,7 @@ const login = async () => {
     ElMessage.error("密码不能为空或者仅有空格");
     return;
   }
-  let loginRes = (await api.request.post("account/loginByPassword", {
+  let loginRes = (await api.request.post("account/login/admin", {
     mobileArea: "+86",
     mobile: mobile.value,
     password: password.value,
