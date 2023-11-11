@@ -59,6 +59,10 @@ const logout = () => {
           <el-icon :size="35"><Notebook /></el-icon>
           <div class="menu-title">管理者</div>
         </el-menu-item>
+        <el-menu-item index="/home/suggestion">
+          <el-icon :size="35"><Notebook /></el-icon>
+          <div class="menu-title">评价</div>
+        </el-menu-item>
         <el-menu-item index="/home/log">
           <el-icon :size="35"><Notebook /></el-icon>
           <div class="menu-title">管理日记</div>

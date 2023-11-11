@@ -50,6 +50,12 @@ const routes: Array<RouteRecordRaw> = [
         children: [],
       },
       {
+        path: "suggestion",
+        name: "suggestion",
+        component: () => import("@/views/pages/suggestion.vue"),
+        children: [],
+      },
+      {
         path: "log",
         name: "log",
         component: () => import("@/views/pages/log.vue"),
